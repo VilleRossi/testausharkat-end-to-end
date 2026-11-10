@@ -32,6 +32,19 @@ describe('testataan wikipediaa', () => {
       'https://fi.wikipedia.org/wiki/Jyv%C3%A4skyl%C3%A4n_ammattikorkeakoulu',
     );
 
-    cy.get('kampukset');
+    cy.contains('Kampukset');
+
+    cy.get('#Kampukset').scrollIntoView();
+
+    cy.wait(5000);
+
+    cy.get('#p-lang-btn-checkbox').click();
+
+    cy.get('#v-0-option-0 > .uls-rewrite__language-item-title > a').click();
+
+    cy.url().should(
+      'include',
+      'https://en.wikipedia.org/wiki/JAMK_University_of_Applied_Sciences',
+    );
   });
 });
